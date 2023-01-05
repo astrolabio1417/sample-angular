@@ -1,0 +1,13 @@
+<div>
+    <h1>
+        Anime Genres
+    </h1>
+    <div class="flex">
+        <button class="genre-item" [class.selected]="findIndexOfGenre(g) !== -1" *ngFor="let g of genres?.data"
+            (click)="setGenre(g)">
+            {{g.name}}
+        </button>
+    </div>
+
+    <app-anime-genre [genres]="genreList"></app-anime-genre>
+</div>

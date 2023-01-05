@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --pageWidth: 1366px;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.root {
+  max-width: var(--pageWidth);
+  min-width: var(--pageWidth);
+}
+
+.flex {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.genre-item,
+.button_primary {
+  padding: 0.4rem 2rem;
+  background-color: rgb(41, 166, 255);
+  color: white;
+  border-radius: 0.3rem;
+  font-weight: bold;
+
+  &.selected {
+    background-color: burlywood;
+  }
+}
+
+.anime-item {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(52, 52, 52);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+
+  img {
+    width: auto;
+    height: 80%;
+  }
+
+  .genre-title {
+    display: grid;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+}
