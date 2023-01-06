@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { AnimeGenresComponent } from './anime-genres/anime-genres.component';
 import { AnimeGenreComponent } from './anime-genres/anime-genre/anime-genre.component';
 import { AnimeInfoComponent } from './anime-info/anime-info.component';
+import { authReducer } from './store/auth.reducer';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { AnimeInfoComponent } from './anime-info/anime-info.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ auth: authReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

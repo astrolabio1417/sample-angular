@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { Event } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IScheduleList, MalService } from './player.service';
+import { Observable } from 'rxjs';
+import { IUser } from '../store/auth.reducer';
+import { Store } from '@ngrx/store';
+import { login, logout } from '../store/auth.actions';
 
 @Component({
   selector: 'app-player',
   template: `
     <div>
+      {{ auth | async | json }}
+      <hr />
+      <button (click)="onLogin()">login</button>
+      <button (click)="onLogout()">logout</button>
+
       <player-sub></player-sub>
       {{ hellopo }}
       <img
@@ -63,10 +71,32 @@ export class PlayerComponent {
   activate = true;
   malSchedules: IScheduleList | null = null;
 
+  auth: Observable<IUser> | undefined;
+
   // subscribers
   schedulesSubs: Subscription | undefined;
 
-  constructor(private service: MalService) {}
+  constructor(
+    private service: MalService,
+    private store: Store<{ auth: IUser }>
+  ) {
+    this.auth = store.select('auth');
+  }
+
+  onLogin() {
+    this.store.dispatch(
+      login({
+        payload: {
+          type: 'magpapalit',
+          data: { level: 5, name: 'magno', position: 'basurero' },
+        },
+      })
+    );
+  }
+
+  onLogout() {
+    this.store.dispatch(logout());
+  }
 
   ngOnInit() {
     this.schedulesSubs = this.service
